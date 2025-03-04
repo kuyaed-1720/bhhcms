@@ -105,11 +105,14 @@
                 <button
                     x-show="step > 1"
                     @click="step--"
-            class="ms-4">Previous</button>
+                    class="ms-4">Previous
+                </button>
                 <button
                     x-show="step < 3"
                     @click="step++"
-class="ms-4">Next"</button>                <x-primary-button x-show="step > 2" class="ms-4">
+                    class="ms-4">Next"
+                </button>
+                <x-primary-button x-show="step > 2" class="ms-4">
                     {{ __('Register') }}
                 </x-primary-button>
             </div>
@@ -121,7 +124,7 @@ class="ms-4">Next"</button>                <x-primary-button x-show="step > 2" c
                 step: 1,
                 passwordStrengthText: '',
                 togglePassword: false,
-               image: ''
+               image: '',
                 password: '',
                 gender: 'Male',
 
