@@ -1,6 +1,33 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}" x-data="app()" x-cloak>
+    <form method="POST" action="{{ route('register') }}" x-data="app()" x-cloak >
         @csrf
+
+        {{-- Header --}}
+        <div class="border-b-2 py-4 mb-2">
+            <div class="uppercase tracking-wide text-md font-bold text-gray-500 mb-1 leading-tight" x-text="`Step: ${step} of 3`"></div>
+            <div class="flex flex-col">
+                <div class="flex-1">
+                    <div x-show="step === 1">
+                        <div class="text-3xl font-bold text-gray-700 leading-tight">Your Profile</div>
+                    </div>
+
+                    <div x-show="step === 2">
+                        <div class="text-3xl font-bold text-gray-700 leading-tight">Contact Details</div>
+                    </div>
+
+                    <div x-show="step === 3">
+                        <div class="text-3xl font-bold text-gray-700 leading-tight">Login Credentials</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center">
+                    <div class="w-full bg-white rounded-full mr-2">
+                        <div class="rounded-full bg-blue-500 text-xs leading-none h-2 text-center text-white" :style="'width: '+ parseInt(step / 3 * 100) +'%'"></div>
+                    </div>
+                    <div class="text-xs w-10 text-gray-600" x-text="parseInt(step / 3 * 100) +'%'"></div>
+                </div>
+            </div>
+        </div>
 
         <div x-show.transition="step === 'complete'">
             <div class="bg-white rounded-lg p-10 flex items-center shadow justify-between">
@@ -26,6 +53,27 @@
 
             <!-- Full Name -->
             <div x-show.transition.in="step === 1">
+                {{-- Profile Photo --}}
+                <div class="mx-auto flex justify-center w-[141px] h-[141px] bg-blue-300/20 rounded-full bg-cover bg-center bg-no-repeat">
+                    <div class="bg-white/90 rounded-full w-6 h-6 text-center ml-28 mt-4">
+
+                        <input type="file" name="profile" id="upload_profile" hidden required>
+
+                        <label for="upload_profile">
+                            <svg data-slot="icon" class="w-6 h-5 text-blue-700" fill="none"
+                                stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z">
+                                </path>
+                            </svg>
+                        </label>
+                    </div>
+                </div>
+
                 <!-- First Name -->
                 <div>
                     <x-input-label for="first_name" :value="__('First Name')" />
@@ -110,7 +158,7 @@
                 <button
                     x-show="step < 3"
                     @click="step++"
-                    class="ms-4">Next"
+                    class="ms-4">Next
                 </button>
                 <x-primary-button x-show="step > 2" class="ms-4">
                     {{ __('Register') }}
@@ -124,7 +172,7 @@
                 step: 1,
                 passwordStrengthText: '',
                 togglePassword: false,
-               image: '',
+                image: '',
                 password: '',
                 gender: 'Male',
 
