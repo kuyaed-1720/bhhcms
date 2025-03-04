@@ -22,7 +22,7 @@
 
                 <div class="flex items-center">
                     <div class="w-full bg-white rounded-full mr-2">
-                        <div class="rounded-full bg-blue-500 text-xs leading-none h-2 text-center text-white" :style="'width: '+ parseInt(step / 3 * 100) +'%'"></div>
+                        <div class="rounded-full bg-blue-600 text-xs leading-none h-2 text-center text-white" :style="'width: '+ parseInt(step / 3 * 100) +'%'"></div>
                     </div>
                     <div class="text-xs w-10 text-gray-600" x-text="parseInt(step / 3 * 100) +'%'"></div>
                 </div>
@@ -158,7 +158,7 @@
                 <button
                     x-show="step < 3"
                     @click="step++"
-                    class="ms-4">Next
+                    class="ms-4 bg-blue-600 text-white rounded-md py-2 px-4">Next
                 </button>
                 <x-primary-button x-show="step > 2" class="ms-4">
                     {{ __('Register') }}
